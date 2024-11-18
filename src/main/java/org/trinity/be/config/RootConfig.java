@@ -21,6 +21,10 @@ import javax.sql.DataSource;
 @PropertySource({"classpath:/application.properties"})
 @MapperScan(basePackages = {
         "org.trinity.be.user.mapper",
+        "org.trinity.be.account.mapper",
+        "org.trinity.be.notification.mapper",
+        "org.trinity.be.transactionhistory.mapper",
+        "org.trinity.be.kbox.mapper",
 })
 @Slf4j
 @EnableTransactionManagement
