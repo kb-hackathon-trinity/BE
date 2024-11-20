@@ -9,7 +9,7 @@
     </settings>
 
     <typeAliases>
-        <package name="org.trinity.be.user.dto"/>
+        <package name="org.trinity.be.user.domain"/>
         <package name="org.trinity.be.account.dto"/>
         <package name="org.trinity.be.kbox.dto"/>
         <package name="org.trinity.be.notification.dto"/>

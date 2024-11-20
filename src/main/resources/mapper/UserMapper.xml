@@ -5,9 +5,14 @@
 
 <mapper namespace="org.trinity.be.user.mapper.UserMapper">
 
-    <select id="get" resultType="userDTO">
+    <select id="findOneByUserID" parameterType="String" resultType="User">
         SELECT *
         FROM user
+        where id = #{id}
+    </select>
+
+    <select id="findOneByUserNo" parameterType="Integer" resultType="User">
+        select * from user where user_no = #{userNo}
     </select>
 
 </mapper>
