@@ -22,6 +22,7 @@
         <mapper resource="mapper/KboxMapper.xml"/>
         <mapper resource="mapper/NotificationMapper.xml"/>
         <mapper resource="mapper/TransactionHistoryMapper.xml"/>
+        <mapper resource="mapper/UserRoleMapper.xml"/>
     </mappers>
 
 </configuration>

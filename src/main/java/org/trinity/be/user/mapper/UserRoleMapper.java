@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface UserRoleMapper {
 
-    int save(UserRole memberRoleDto);
+    int save(UserRole userRoleDto);
     List<UserRole> findUserRoleByUserNo(int userNo);
 }
