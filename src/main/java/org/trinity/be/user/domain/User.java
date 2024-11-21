@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     private List<UserRole> userRoles = new ArrayList<>();
 
-    public void addMemberRole(List<UserRole> memberRoles) {
+    public void addMemberRole(List<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
@@ -40,8 +40,8 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         return this.userRoles.stream()
-                .map(memberRole ->
-                        new SimpleGrantedAuthority(memberRole.getRole()))
+                .map(userRole ->
+                        new SimpleGrantedAuthority(userRole.getRole()))
                 .collect(Collectors.toList());
     }
 
@@ -54,12 +54,12 @@ public class User implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.name;
     }
 
     @Override

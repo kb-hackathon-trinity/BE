@@ -33,19 +33,22 @@ public class UserServiceImpl implements UserService{
 
     public User login(UserLoginReqDto userLoginReqDto) {
         User user = userMapper.findOneByUserID(userLoginReqDto.getId());
+        log.info("user 찾기 성공");
+        log.info(user.getName());
 
         if (verifyPassword(user, userLoginReqDto.getPw())) {
             throw new CustomException(LOGIN_UNAUTHENTICATED);
         }
-
         user.addMemberRole(getUserRolesByUserNo(user.getUserNo()));
-
+        log.info("역할 추가 완료");
         return user;
     }
 
 
     private boolean verifyPassword(User user, String pw) {
         // 로그인 시 비밀번호 일치여부 확인
+        log.info("user.getPassword = " + user.getPassword());
+        log.info("pw = " + pw);
         return passwordEncoder().matches(pw, user.getPassword());
 
     }

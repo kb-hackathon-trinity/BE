@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<DefaultResDto<Object>> login(@RequestBody UserLoginReqDto userLoginReqDto) {
         User user = userService.login(userLoginReqDto);
-
+        log.info("userService 통과");
         HttpHeaders headers = jwtProvider.generateUserJwt(user.getUserNo(), user.getRoles());
         UserDefaultResDto response = new UserDefaultResDto(user);
 
