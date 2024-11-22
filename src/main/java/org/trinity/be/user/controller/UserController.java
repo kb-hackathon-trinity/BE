@@ -28,7 +28,7 @@ public class UserController {
     private final JwtUtils jwtUtils;
 
     @PostMapping("/login")
-    public ResponseEntity<DefaultResDto<Object>> login(@RequestBody UserLoginReqDto userLoginReqDto) {
+    public ResponseEntity<DefaultResDto<Object>> login(@RequestBody UserLoginReqDto userLoginReqDto, HttpServletRequest request) {
         User user = userService.login(userLoginReqDto);
         log.info("userService 통과");
         HttpHeaders headers = jwtProvider.generateUserJwt(user.getUserNo(), user.getRoles());
@@ -37,6 +37,7 @@ public class UserController {
         log.info(headers.toString());
 
         log.info(response.toString());
+        log.info("@@@@@@");
         return ResponseEntity.status(USER_LOGIN.getHttpStatus())
                 .headers(headers)
                 .body(DefaultResDto.singleDataBuilder()

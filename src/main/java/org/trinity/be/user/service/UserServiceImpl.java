@@ -31,14 +31,17 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder();}
 
 
+
     public User login(UserLoginReqDto userLoginReqDto) {
         User user = userMapper.findOneByUserID(userLoginReqDto.getId());
         log.info("user 찾기 성공");
         log.info(user.getName());
-
-        if (verifyPassword(user, userLoginReqDto.getPw())) {
+        log.info(userLoginReqDto.getPw());
+        log.info(passwordEncoder().encode(userLoginReqDto.getPw()));
+        if (!verifyPassword(user, userLoginReqDto.getPw())) {
             throw new CustomException(LOGIN_UNAUTHENTICATED);
         }
+        log.info("password 일치 통과");
         user.addMemberRole(getUserRolesByUserNo(user.getUserNo()));
         log.info("역할 추가 완료");
         return user;
@@ -49,6 +52,7 @@ public class UserServiceImpl implements UserService{
         // 로그인 시 비밀번호 일치여부 확인
         log.info("user.getPassword = " + user.getPassword());
         log.info("pw = " + pw);
+        log.info(String.valueOf(passwordEncoder().matches(pw, user.getPassword())));
         return passwordEncoder().matches(pw, user.getPassword());
 
     }
